@@ -121,7 +121,16 @@ export default function Page() {
               </button>
 
               {/* Desktop Navigation Links */}
-              <div className="hidden md:flex flex-1 justify-center space-x-8 lg:space-x-12">
+              <div className="hidden md:flex flex-1 items-center justify-center space-x-8 lg:space-x-12 relative">
+                {/* Image positioned higher and slightly larger */}
+                <Image
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/halal.jpg-D7yPV4uhADFNjqn6OYnBL8l1Qt6y8N.jpeg"
+                  alt="Halal Certified"
+                  width={50}
+                  height={50}
+                  className="w-14 h-14 rounded-xl shadow-lg object-cover absolute left-0 top-[-1rem]"
+                />
+
                 <button
                   onClick={() =>
                     window.scrollTo({ top: 0, behavior: "smooth" })
@@ -264,13 +273,12 @@ export default function Page() {
           <div className="absolute inset-0 bg-gradient-to-b from-green-500/5 to-transparent pointer-events-none" />
           <div className="relative container mx-auto px-6 flex flex-col items-center justify-center">
             <motion.h1
-              className="text-8xl md:text-9xl lg:text-[12rem] font-bold text-center leading-none tracking-tighter mb-8"
+              className="text-8xl md:text-9xl lg:text-[12rem] font-bold text-center leading-none tracking-tighter mb-8 relative"
               style={{
                 background: "linear-gradient(45deg, #22C55E 30%, #EAB308 90%)",
                 backgroundClip: "text",
                 WebkitBackgroundClip: "text",
                 color: "transparent",
-                textShadow: "0 0 40px rgba(34, 197, 94, 0.3)",
               }}
               animate={{
                 y: [0, -20, 0],
@@ -285,6 +293,23 @@ export default function Page() {
               }}
             >
               $HALAL
+              <motion.div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(45deg, rgba(34, 197, 94, 0.2), rgba(234, 179, 8, 0.2))",
+                  filter: "blur(40px)",
+                  opacity: 0,
+                }}
+                animate={{
+                  opacity: [0, 0.5, 0],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Number.POSITIVE_INFINITY,
+                  repeatType: "reverse",
+                }}
+              />
             </motion.h1>
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
@@ -304,18 +329,34 @@ export default function Page() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.5 }}
             >
-              <Button
-                size="lg"
-                className="bg-green-500 hover:bg-green-600 text-white px-12 py-6 text-xl rounded-full transition-all hover:scale-105 mt-12 shadow-lg"
-                onClick={() =>
-                  window.open(
-                    "https://jup.ag/tokens/ML6CUJc3PypAEMcbgM2CcnPzzbBSdBMSN6cwqCGzBEJ",
-                    "_blank"
-                  )
-                }
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                {t.hero.buyNow}
-              </Button>
+                <Button
+                  size="lg"
+                  className="bg-green-500 hover:bg-green-600 text-white px-12 py-6 text-xl mt-3 rounded-full transition-all shadow-lg relative overflow-hidden group"
+                  onClick={() =>
+                    window.open(
+                      "https://jup.ag/tokens/ML6CUJc3PypAEMcbgM2CcnPzzbBSdBMSN6cwqCGzBEJ",
+                      "_blank"
+                    )
+                  }
+                >
+                  <motion.div
+                    className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20"
+                    animate={{
+                      scale: [1, 1.5, 1],
+                    }}
+                    transition={{
+                      duration: 1.5,
+                      repeat: Number.POSITIVE_INFINITY,
+                      repeatType: "reverse",
+                    }}
+                  />
+                  {t.hero.buyNow}
+                </Button>
+              </motion.div>
             </motion.div>
           </div>
         </section>
@@ -521,7 +562,7 @@ export default function Page() {
                 {t.footer.dexScreener}
               </a>
               <a
-                href="https://x.com/halalcoincto"
+                href="https://twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm hover:text-green-400 transition-all duration-300"
@@ -529,7 +570,7 @@ export default function Page() {
                 {t.footer.twitter}
               </a>
               <a
-                href="https://t.me/halalcertifiedcto"
+                href="https://t.me"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm hover:text-green-400 transition-all duration-300"
