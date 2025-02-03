@@ -125,7 +125,7 @@ export default function Page() {
               <div className="hidden md:flex flex-1 items-center justify-center space-x-8 lg:space-x-12 relative">
                 {/* Image positioned higher and slightly larger */}
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/halal.jpg-D7yPV4uhADFNjqn6OYnBL8l1Qt6y8N.jpeg"
+                  src="https://i.imgur.com/LJhDPBp.png"
                   alt="Halal Certified"
                   width={50}
                   height={50}
