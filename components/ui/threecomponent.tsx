@@ -1,37 +1,21 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef } from "react";
 import * as THREE from "three";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import { TextureLoader } from "three";
 
 function FloatingImage() {
-  const meshRef = useRef();
+  const meshRef = useRef<THREE.Mesh>(null);
   const texture = useLoader(TextureLoader, "https://i.imgur.com/LJhDPBp.png");
-
-  const [float, setFloat] = useState({
-    x: 0,
-    y: 0,
-    z: 0,
-    xSpeed: 0.3,
-    ySpeed: 0.2,
-    zSpeed: 0.1,
-  });
 
   useFrame((state, delta) => {
     if (!meshRef.current) return;
 
-    // Floating movement with more pronounced motion
-    float.x += float.xSpeed * delta;
-    float.y += float.ySpeed * delta;
+    // Subtle floating motion
+    meshRef.current.position.x = Math.sin(state.clock.elapsedTime) * 0.3;
+    meshRef.current.position.y = Math.cos(state.clock.elapsedTime) * 0.2;
 
-    // Wider range of movement
-    if (Math.abs(float.x) > 1) float.xSpeed *= -1;
-    if (Math.abs(float.y) > 1) float.ySpeed *= -1;
-
-    meshRef.current.position.x = float.x * 0.5;
-    meshRef.current.position.y = float.y * 0.5;
-
-    // Slight rotation
-    meshRef.current.rotation.z += delta * 0.2;
+    // Gentle rotation
+    meshRef.current.rotation.z += delta * 0.1;
   });
 
   return (
