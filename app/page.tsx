@@ -9,6 +9,7 @@ import WhackAPepe from "@/components/ui/whack-a-pepe";
 import { motion, AnimatePresence } from "framer-motion";
 import { Moon, Sun } from "lucide-react";
 import Head from "next/head";
+import ThreeBackground from "@/components/ui/threecomponent";
 
 export default function Page() {
   const { t, language, setLanguage } = useLanguage();
@@ -272,6 +273,7 @@ export default function Page() {
         <section className="relative min-h-screen w-full flex items-center justify-center pt-20">
           <div className="absolute inset-0 bg-gradient-to-b from-green-500/5 to-transparent pointer-events-none" />
           <div className="relative container mx-auto px-6 flex flex-col items-center justify-center">
+            <ThreeBackground />
             <motion.h1
               className="text-8xl md:text-9xl lg:text-[12rem] font-bold text-center leading-none tracking-tighter mb-8 relative"
               style={{
