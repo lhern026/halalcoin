@@ -9,6 +9,7 @@ import WhackAPepe from "@/components/ui/whack-a-pepe";
 
 export default function Page() {
   const { t, language, setLanguage } = useLanguage();
+  //comment
   const aboutRef = useRef<HTMLElement>(null);
   const gameRef = useRef<HTMLElement>(null);
   const tokenomicsRef = useRef<HTMLElement>(null);
