@@ -5,6 +5,7 @@ import { getDexData } from "@/lib/dexscreener";
 import { useEffect, useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import type React from "react"; // Added import for React
+import WhackAPepe from "@/components/ui/whack-a-pepe";
 
 export default function Page() {
   const { t, language, setLanguage } = useLanguage();
@@ -90,7 +91,16 @@ export default function Page() {
           </div>
         </div>
       </nav>
-
+      {/* whack a pepe game */}
+<section className="min-h-screen flex items-center justify-center relative py-20">
+  <div className="container mx-auto px-4">
+    <h2 className="text-6xl font-bold text-center mb-12" style={{ color: "#EAB308" }}>
+      Whack-a-Pepe
+    </h2>
+    <WhackAPepe />
+  </div>
+</section>
+{/* whack a pepe game */}
       {/* Hero Section */}
       <section className="relative min-h-screen w-full overflow-hidden flex items-center justify-center">
         <div className="absolute inset-0 bg-gradient-to-b from-green-500/10 to-transparent pointer-events-none" />
