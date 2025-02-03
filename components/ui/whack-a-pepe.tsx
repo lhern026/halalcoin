@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { Button } from '@/components/ui/button';
-import Image from 'next/image';
+import React, { useState, useEffect, useCallback } from "react";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 const WhackAPepe = () => {
   const [score, setScore] = useState(0);
@@ -8,7 +8,7 @@ const WhackAPepe = () => {
   const [gameActive, setGameActive] = useState(false);
   const [pepePosition, setPepePosition] = useState({ x: 0, y: 0 });
   const [showPepe, setShowPepe] = useState(false);
-  
+
   const startGame = () => {
     setScore(0);
     setTimeLeft(30);
@@ -18,15 +18,15 @@ const WhackAPepe = () => {
 
   const movePepe = useCallback(() => {
     if (!gameActive) return;
-    
+
     // More constrained area for Pepe
     const x = Math.floor(Math.random() * 60) + 20;
     const y = Math.floor(Math.random() * 60) + 20;
-    
+
     // Show new Pepe
     setPepePosition({ x, y });
     setShowPepe(true);
-    
+
     // Keep Pepe visible for much longer
     setTimeout(() => {
       if (gameActive) {
@@ -41,8 +41,8 @@ const WhackAPepe = () => {
 
   const handleClick = () => {
     if (!gameActive || !showPepe) return;
-    
-    setScore(prev => {
+
+    setScore((prev) => {
       const newScore = prev + 1;
       if (newScore >= 10) {
         setGameActive(false);
@@ -50,7 +50,7 @@ const WhackAPepe = () => {
       }
       return newScore;
     });
-    
+
     setShowPepe(false);
     // Longer pause after successful click
     setTimeout(() => {
@@ -61,9 +61,9 @@ const WhackAPepe = () => {
   // Timer effect
   useEffect(() => {
     if (!gameActive) return;
-    
+
     const timer = setInterval(() => {
-      setTimeLeft(prev => {
+      setTimeLeft((prev) => {
         if (prev <= 1) {
           setGameActive(false);
           return 0;
@@ -87,16 +87,16 @@ const WhackAPepe = () => {
       <div className="text-xl mb-4">
         Score: {score} / 10 | Time: {timeLeft}s
       </div>
-      
+
       <div className="relative w-96 h-96 bg-gray-900 rounded-lg overflow-hidden">
         {showPepe && (
           <button
             onClick={handleClick}
             className="absolute p-4 transition-transform duration-500 focus:outline-none hover:scale-110"
-            style={{ 
-              left: `${pepePosition.x}%`, 
+            style={{
+              left: `${pepePosition.x}%`,
               top: `${pepePosition.y}%`,
-              transform: 'translate(-50%, -50%)',
+              transform: "translate(-50%, -50%)",
             }}
           >
             <Image
@@ -116,16 +116,20 @@ const WhackAPepe = () => {
           {score >= 10 ? (
             <div className="text-2xl text-green-500 mb-4">You Won! 🎉</div>
           ) : timeLeft === 0 ? (
-            <div className="text-2xl text-red-500 mb-4">Time's Up! Try Again!</div>
+            <div className="text-2xl text-red-500 mb-4">
+              Time&apos;s Up! Try Again!
+            </div>
           ) : (
-            <div className="text-2xl text-yellow-500 mb-4">Click Pepe 10 Times to Win!</div>
+            <div className="text-2xl text-yellow-500 mb-4">
+              Click Pepe 10 Times to Win!
+            </div>
           )}
           <Button
             onClick={startGame}
             size="lg"
             className="bg-green-500 hover:bg-green-600"
           >
-            {score >= 10 || timeLeft === 0 ? 'Play Again' : 'Start Game'}
+            {score >= 10 || timeLeft === 0 ? "Play Again" : "Start Game"}
           </Button>
         </div>
       )}
