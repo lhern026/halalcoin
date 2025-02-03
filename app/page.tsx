@@ -6,10 +6,10 @@ import { useEffect, useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import type React from "react";
 import WhackAPepe from "@/components/ui/whack-a-pepe";
+import { motion } from "framer-motion";
 
 export default function Page() {
   const { t, language, setLanguage } = useLanguage();
-  //comment
   const aboutRef = useRef<HTMLElement>(null);
   const gameRef = useRef<HTMLElement>(null);
   const tokenomicsRef = useRef<HTMLElement>(null);
@@ -26,18 +26,9 @@ export default function Page() {
   const scrollToSection = (ref: React.RefObject<HTMLElement>) => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
   };
-  const Navigation = ({
-    t,
-    language,
-    setLanguage,
-    scrollToSection,
-    aboutRef,
-    gameRef,
-    tokenomicsRef,
-  }) => {
-    const [isOpen, setIsOpen] = useState(false);
-  };
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   useEffect(() => {
     const fetchData = async () => {
       const dexData = await getDexData();
@@ -95,13 +86,13 @@ export default function Page() {
                 onClick={() => scrollToSection(gameRef)}
                 className="text-sm font-medium hover:text-green-400 transition-all duration-300"
               >
-                Game
+                {t.nav.game}
               </button>
               <button
                 onClick={() => scrollToSection(tokenomicsRef)}
                 className="text-sm font-medium hover:text-green-400 transition-all duration-300"
               >
-                Tokenomics
+                {t.nav.tokenomics}
               </button>
             </div>
 
@@ -114,7 +105,7 @@ export default function Page() {
                 rel="noopener noreferrer"
                 className="hidden md:block bg-green-500 hover:bg-green-600 px-6 py-2 rounded-full text-sm font-medium transition-all duration-300"
               >
-                Buy Now
+                {t.nav.buyNow}
               </a>
 
               {/* Language Switcher */}
@@ -176,7 +167,7 @@ export default function Page() {
                 }}
                 className="text-sm font-medium hover:text-green-400 transition-all duration-300"
               >
-                Game
+                {t.nav.game}
               </button>
               <button
                 onClick={() => {
@@ -185,7 +176,7 @@ export default function Page() {
                 }}
                 className="text-sm font-medium hover:text-green-400 transition-all duration-300"
               >
-                Tokenomics
+                {t.nav.tokenomics}
               </button>
               {/* Buy Now Button - Mobile */}
               <a
@@ -194,7 +185,7 @@ export default function Page() {
                 rel="noopener noreferrer"
                 className="bg-green-500 hover:bg-green-600 px-6 py-2 rounded-full text-sm font-medium text-center transition-all duration-300"
               >
-                Buy Now
+                {t.nav.buyNow}
               </a>
             </div>
           </div>
@@ -205,7 +196,7 @@ export default function Page() {
       <section className="relative min-h-screen w-full flex items-center justify-center pt-20">
         <div className="absolute inset-0 bg-gradient-to-b from-green-500/5 to-transparent pointer-events-none" />
         <div className="relative container mx-auto px-6 flex flex-col items-center justify-center">
-          <h1
+          <motion.h1
             className="text-8xl md:text-9xl lg:text-[12rem] font-bold text-center leading-none tracking-tighter mb-8"
             style={{
               background: "linear-gradient(45deg, #22C55E 30%, #EAB308 90%)",
@@ -214,9 +205,20 @@ export default function Page() {
               color: "transparent",
               textShadow: "0 0 40px rgba(34, 197, 94, 0.3)",
             }}
+            animate={{
+              y: [0, -20, 0],
+              rotateX: [0, 5, 0],
+              rotateY: [0, 5, 0],
+            }}
+            transition={{
+              duration: 6,
+              ease: "easeInOut",
+              repeat: Number.POSITIVE_INFINITY,
+              repeatType: "reverse",
+            }}
           >
             $HALAL
-          </h1>
+          </motion.h1>
           <Image
             src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/halal1-93OG91i3znNnj28AffP1ZILsuz75eF.jpeg"
             alt="Halal Pepe"
@@ -296,7 +298,7 @@ export default function Page() {
               color: "transparent",
             }}
           >
-            Whack-a-Pepe
+            {t.game.title}
           </h2>
           <div className="max-w-4xl mx-auto">
             <WhackAPepe />
@@ -320,7 +322,7 @@ export default function Page() {
                 color: "transparent",
               }}
             >
-              Tokenomics
+              {t.token.title}
             </h2>
 
             <div className="space-y-12">
@@ -381,20 +383,12 @@ export default function Page() {
         <div className="container mx-auto px-6">
           <div className="flex flex-wrap justify-center gap-8">
             <a
-              href="https://www.coingecko.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm hover:text-green-400 transition-all duration-300"
-            >
-              Coingecko
-            </a>
-            <a
               href="https://dexscreener.com/solana/gbvetysfnqepyusrrtkqvzidynoiyaubqfmm1bhwqqk7"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm hover:text-green-400 transition-all duration-300"
             >
-              DEX Screener
+              {t.footer.dexScreener}
             </a>
             <a
               href="https://twitter.com"
@@ -402,7 +396,7 @@ export default function Page() {
               rel="noopener noreferrer"
               className="text-sm hover:text-green-400 transition-all duration-300"
             >
-              Twitter
+              {t.footer.twitter}
             </a>
             <a
               href="https://t.me"
@@ -410,7 +404,7 @@ export default function Page() {
               rel="noopener noreferrer"
               className="text-sm hover:text-green-400 transition-all duration-300"
             >
-              Telegram
+              {t.footer.telegram}
             </a>
           </div>
         </div>
