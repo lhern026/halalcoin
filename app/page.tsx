@@ -271,9 +271,21 @@ export default function Page() {
 
         {/* Hero Section */}
         <section className="relative min-h-screen w-full flex items-center justify-center pt-20">
-          <div className="absolute inset-0 bg-gradient-to-b from-green-500/5 to-transparent pointer-events-none" />
+          <div
+            className="absolute inset-0 bg-gradient-to-b from-green-500/5 to-transparent pointer-events-none"
+            style={{
+              background: `
+      radial-gradient(
+        circle at center, 
+        rgba(34,197,94,0.1) 0%, 
+        rgba(234,179,8,0.05) 100%
+      )
+    `,
+              animation: "pulse 5s infinite",
+              mixBlendMode: "overlay",
+            }}
+          />
           <div className="relative container mx-auto px-6 flex flex-col items-center justify-center">
-            <ThreeBackground />
             <motion.h1
               className="text-8xl md:text-9xl lg:text-[12rem] font-bold text-center leading-none tracking-tighter mb-8 relative"
               style={{
@@ -369,6 +381,8 @@ export default function Page() {
           className="min-h-screen flex items-center relative py-24 bg-black/50"
         >
           <div className="container mx-auto px-6">
+            {" "}
+            <ThreeBackground />
             <div className="grid md:grid-cols-2 gap-16 items-center">
               <div className="space-y-8">
                 <h2
