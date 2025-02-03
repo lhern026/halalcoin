@@ -521,7 +521,7 @@ export default function Page() {
                 {t.footer.dexScreener}
               </a>
               <a
-                href="https://twitter.com"
+                href="https://x.com/halalcoincto"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm hover:text-green-400 transition-all duration-300"
@@ -529,7 +529,7 @@ export default function Page() {
                 {t.footer.twitter}
               </a>
               <a
-                href="https://t.me"
+                href="https://t.me/halalcertifiedcto"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm hover:text-green-400 transition-all duration-300"
